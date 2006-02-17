@@ -98,9 +98,9 @@ of the body."
 (defmacro acond (&body clauses)
   (labels ((rec (clauses)
 	     (if clauses
-		 (destructuring-bind ((test &optional result) . rest)  clauses
-		   (if result
-		       `(anaphoric if ,test ,result ,(rec rest))
+		 (destructuring-bind ((test &body body) . rest)  clauses
+		   (if body
+		       `(anaphoric if ,test (progn ,@body) ,(rec rest))
 		       `(anaphoric if ,test it ,(rec rest))))
 		 nil)))
     (rec clauses)))
@@ -108,9 +108,9 @@ of the body."
 (defmacro scond (&body clauses)
   (labels ((rec (clauses)
 	     (if clauses
-		 (destructuring-bind ((test &optional result) . rest) clauses
-		   (if result
-		       `(symbolic if ,test ,result ,(rec rest))
+		 (destructuring-bind ((test &body body) . rest) clauses
+		   (if body
+		       `(symbolic if ,test (progn ,@body) ,(rec rest))
 		       `(symbolic if ,test it ,(rec rest))))
 		 nil)))
     (rec clauses)))
