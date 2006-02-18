@@ -318,6 +318,13 @@
 	   (t :yes))
   :yes)
 
+;; Test COND with multiple forms in the implicit progn.
+(deftest acond.4
+    (let ((foo))
+      (acond ((+ 2 2) (setf foo 38) (incf foo it) foo)
+	     (t nil)))
+  42)
+
 (deftest scond.1
     (let ((x (list nil))
 	  (y (list t)))
@@ -341,4 +348,8 @@
 		(setf it tmp)))))
   "/tmp/")
 
-
+(deftest aprog.1
+    (aprog1 :yes
+      (unless (eql it :yes) (error "Broken."))
+      :no)
+  :yes)

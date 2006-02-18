@@ -11,6 +11,7 @@
    #:aand
    #:sor
    #:awhen
+   #:aprog1
    #:acase
    #:aecase
    #:accase

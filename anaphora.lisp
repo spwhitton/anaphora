@@ -48,6 +48,11 @@ the else-expression IT can be set with SETF."
 	   ,then
 	   (symbolic ignore-first ,test ,else))))
 
+(defmacro aprog1 (first &body rest)
+  "Binds IT to the first form so that it can be used in the rest of the
+forms. The whole thing returns IT."
+  `(anaphoric prog1 ,first ,@rest))
+
 (defmacro awhen (test &body body)
   "Like WHEN, except bind the result of the test to IT (via LET) for the scope
 of the body."
