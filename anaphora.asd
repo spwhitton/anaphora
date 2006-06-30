@@ -4,7 +4,7 @@
 ;;;; Nikodemus Siivola <nikodemus@random-state.net>
 
 (defsystem :anaphora
-    :version "0.9.2"
+    :version "0.9.3"
     :components
     ((:file "packages")
      (:file "early" :depends-on ("packages"))

@@ -1,6 +1,6 @@
 ;;;; Anaphora: The Anaphoric Macro Package from Hell
 ;;;;
-;;;; This been placed in Public Domain by the author, 
+;;;; This been placed in Public Domain by the author,
 ;;;; Nikodemus Siivola <nikodemus@random-state.net>
 
 (defpackage :anaphora-test
@@ -12,6 +12,28 @@
     (aand (+ 1 1)
 	  (+ 1 it))
   3)
+
+(deftest aand.2
+    (aand 1 t (values it 2))
+  1 2)
+
+(deftest aand.3
+    (let ((x 1))
+      (aand (incf x) t t (values t it)))
+  t 2)
+
+(deftest aand.4
+    (aand 1 (values t it))
+  t 1)
+
+#+(or)
+;;; bug or a feature? forms like this expand to
+;;;
+;;; (let ((it (values ...))) (and it ...))
+;;;
+(deftest aand.5
+    (aand (values nil t) it)
+  nil t)
 
 (deftest sor.1
     (let ((x (list nil)))
@@ -57,9 +79,9 @@
   :yes!)
 
 (deftest sif.3
-    (sif (list 1 2 3) 
-	 (sif (car it) 
-	      (setf it 'a) 
+    (sif (list 1 2 3)
+	 (sif (car it)
+	      (setf it 'a)
 	      :foo))
   a)
 
@@ -69,8 +91,8 @@
 	((a :initform (list :sif))))
       (with-slots (a)
 	  (make-instance 'sif.4)
-	(sif a 
-	     (sif (car it) 
+	(sif a
+	     (sif (car it)
 		  it))))
   :sif)
 
@@ -245,7 +267,7 @@
       x)
   (:bar))
 
-(deftest aetypecase.1     
+(deftest aetypecase.1
     (aetypecase 1.0
        (fixnum (* 2 it))
        (float (+ 2.0 it))
@@ -331,7 +353,7 @@
       (scond ((car x) (setf it :nono))
 	     ((car y) (setf it :yes)))
       (values x y))
-  (nil) 
+  (nil)
   (:yes))
 
 (deftest scond.2
@@ -350,6 +372,6 @@
 
 (deftest aprog.1
     (aprog1 :yes
-      (unless (eql it :yes) (error "Broken."))
+        (unless (eql it :yes) (error "Broken."))
       :no)
   :yes)

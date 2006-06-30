@@ -5,14 +5,17 @@
 
 (in-package :anaphora)
 
-(defmacro anaphoric (op test &body body)
+(defmacro anaphoric (op test &body body)  
+  ;; Note: multiple values discarded. Handling them would be nice, but also
+  ;; requires consing up a values-list, which seems a bit harsh for something
+  ;; that is supposed to be "simple syntactic sugar".
   `(let ((it ,test))
      (,op it ,@body)))
 
-;;; This was the original implementation of SYMBOLIC --
-;;; and still good for getting the basic idea. Brian Masterbrooks
-;;; solution to infinite recusion during macroexpansion that nested
-;;; forms of this are subject to is in symbolic.lisp.
+;;; This was the original implementation of SYMBOLIC -- and still good
+;;; for getting the basic idea. Brian Masterbrooks solution to
+;;; infinite recusion during macroexpansion, that nested forms of this
+;;; are subject to, is in symbolic.lisp.
 ;;;
 ;;; (defmacro symbolic (op test &body body &environment env)
 ;;;   `(symbol-macrolet ((it ,test))
@@ -54,53 +57,85 @@ forms. The whole thing returns IT."
   `(anaphoric prog1 ,first ,@rest))
 
 (defmacro awhen (test &body body)
-  "Like WHEN, except bind the result of the test to IT (via LET) for the scope
+  "Like WHEN, except binds the result of the test to IT (via LET) for the scope
 of the body."
   `(anaphoric when ,test ,@body))
 
 (defmacro swhen (test &body body)
+  "Like WHEN, except binds the test form to IT (via SYMBOL-MACROLET) for the
+scope of the body. IT can be set with SETF."
   `(symbolic when ,test ,@body))
 
 (defmacro sunless (test &body body)
+  "Like UNLESS, except binds the test form to IT (via SYMBOL-MACROLET) for the
+scope of the body. IT can be set with SETF."
   `(symbolic unless ,test ,@body))
 
-(defmacro acase (form &body cases)
-  `(anaphoric case ,form ,@cases))
+(defmacro acase (keyform &body cases)
+  "Like CASE, except binds the result of the keyform to IT (via LET) for the
+scope of the cases."
+  `(anaphoric case ,keyform ,@cases))
 
-(defmacro scase (form &body cases)
-  `(symbolic case ,form ,@cases))
+(defmacro scase (keyform &body cases)
+  "Like CASE, except binds the keyform to IT (via SYMBOL-MACROLET) for the
+scope of the body. IT can be set with SETF."
+  `(symbolic case ,keyform ,@cases))
 
-(defmacro aecase (form &body cases)
-  `(anaphoric ecase ,form ,@cases))
+(defmacro aecase (keyform &body cases)
+  "Like ECASE, except binds the result of the keyform to IT (via LET) for the
+scope of the cases."
+  `(anaphoric ecase ,keyform ,@cases))
 
-(defmacro secase (form &body cases)
-  `(symbolic ecase ,form ,@cases))
+(defmacro secase (keyform &body cases)
+  "Like ECASE, except binds the keyform to IT (via SYMBOL-MACROLET) for the
+scope of the cases. IT can be set with SETF."
+  `(symbolic ecase ,keyform ,@cases))
   
-(defmacro accase (form &body cases)
-  `(anaphoric ccase ,form ,@cases))
+(defmacro accase (keyform &body cases)
+  "Like CCASE, except binds the result of the keyform to IT (via LET) for the
+scope of the cases. Unlike CCASE, the keyform/place doesn't receive new values
+possibly stored with STORE-VALUE restart; the new value is received by IT."
+  `(anaphoric ccase ,keyform ,@cases))
 
-(defmacro sccase (form &body cases)
-  `(symbolic ccase ,form ,@cases))
+(defmacro sccase (keyform &body cases)
+  "Like CCASE, except binds the keyform to IT (via SYMBOL-MACROLET) for the
+scope of the cases. IT can be set with SETF."
+  `(symbolic ccase ,keyform ,@cases))
 
-(defmacro atypecase (form &body cases)
-  `(anaphoric typecase ,form ,@cases))
+(defmacro atypecase (keyform &body cases)
+  "Like TYPECASE, except binds the result of the keyform to IT (via LET) for
+the scope of the cases."
+  `(anaphoric typecase ,keyform ,@cases))
 
-(defmacro stypecase (form &body cases)
-  `(symbolic typecase ,form ,@cases))
+(defmacro stypecase (keyform &body cases)
+  "Like TYPECASE, except binds the keyform to IT (via SYMBOL-MACROLET) for the
+scope of the cases. IT can be set with SETF."
+  `(symbolic typecase ,keyform ,@cases))
 
-(defmacro aetypecase (form &body cases)
-  `(anaphoric etypecase ,form ,@cases))
+(defmacro aetypecase (keyform &body cases)
+  "Like ETYPECASE, except binds the result of the keyform to IT (via LET) for
+the scope of the cases."
+  `(anaphoric etypecase ,keyform ,@cases))
 
-(defmacro setypecase (form &body cases)
-  `(symbolic etypecase ,form ,@cases))
+(defmacro setypecase (keyform &body cases)
+  "Like ETYPECASE, except binds the keyform to IT (via SYMBOL-MACROLET) for
+the scope of the cases. IT can be set with SETF."
+  `(symbolic etypecase ,keyform ,@cases))
 
-(defmacro actypecase (form &body cases)
-  `(anaphoric ctypecase ,form ,@cases))
+(defmacro actypecase (keyform &body cases)
+  "Like CTYPECASE, except binds the result of the keyform to IT (via LET) for
+the scope of the cases. Unlike CTYPECASE, new values possible stored by the
+STORE-VALUE restart are not received by the keyform/place, but by IT."
+  `(anaphoric ctypecase ,keyform ,@cases))
 
-(defmacro sctypecase (form &body cases)
-  `(symbolic ctypecase ,form ,@cases))
+(defmacro sctypecase (keyform &body cases)
+  "Like CTYPECASE, except binds the keyform to IT (via SYMBOL-MACROLET) for
+the scope of the cases. IT can be set with SETF."
+  `(symbolic ctypecase ,keyform ,@cases))
 
 (defmacro acond (&body clauses)
+  "Like COND, except result of each test-form is bound to IT (via LET) for the
+scope of the corresponding clause."
   (labels ((rec (clauses)
 	     (if clauses
 		 (destructuring-bind ((test &body body) . rest)  clauses
@@ -111,6 +146,8 @@ of the body."
     (rec clauses)))
 
 (defmacro scond (&body clauses)
+  "Like COND, except each test-form is bound to IT (via SYMBOL-MACROLET) for the
+scope of the corresponsing clause. IT can be seet with SETF."
   (labels ((rec (clauses)
 	     (if clauses
 		 (destructuring-bind ((test &body body) . rest) clauses

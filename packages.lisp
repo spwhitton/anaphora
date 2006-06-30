@@ -29,7 +29,11 @@
    #:stypecase
    #:setypecase
    #:sctypecase
-   #:scond))
+   #:scond)
+  (:documentation 
+   "ANAPHORA provides a full complement of anaphoric macros. Subsets of the
+functionality provided by this package are exported from ANAPHORA-BASIC and
+ANAPHORA-SYMBOL."))
 
 (defpackage :anaphora-basic
   (:use :cl :anaphora)
@@ -38,13 +42,17 @@
    #:aif
    #:aand
    #:awhen
+   #:aprog1
    #:acase
    #:aecase
    #:accase
    #:atypecase
    #:aetypecase
    #:actypecase
-   #:acond))
+   #:acond)
+  (:documentation 
+   "ANAPHORA-BASIC provides all normal anaphoric constructs, which bind
+primary values to IT."))
    
 (defpackage :anaphora-symbol
   (:use :cl :anaphora)
@@ -61,4 +69,16 @@
    #:stypecase
    #:setypecase
    #:sctypecase
-   #:scond))
+   #:scond)
+  (:documentation
+   "ANAPHORA-SYMBOL provides ``symbolic anaphoric macros'', which bind forms
+to IT via SYMBOL-MACROLET. 
+
+Examples:
+
+  (sor (gethash key table) (setf it default))
+
+  (asif (gethash key table)
+        (foo it)            ; IT is a value bound by LET here
+        (setf it default))  ; IT is the GETHASH form bound by SYMBOL-MACROLET here
+"))
