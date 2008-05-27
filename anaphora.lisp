@@ -39,6 +39,7 @@ the scope of the then and else expressions."
 (defmacro sif (test then &optional else &environment env)
   "Like IF, except binds the test form to IT (via SYMBOL-MACROLET) for
 the scope of the then and else expressions. IT can be set with SETF"
+  (declare (ignore env))
   `(symbolic if ,test ,then ,else))
 
 (defmacro asif (test then &optional else)
