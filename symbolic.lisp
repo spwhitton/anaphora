@@ -44,4 +44,12 @@
         `(symbol-macrolet
              ((,this-s (internal-symbol-macrolet ((it ,current-s)) ,test))
               (it ,this-s))
-           (,operation it ,@other-args))))))
+           (,operation it ,@other-args)))))
+
+  (defmacro anaphoric (op test &body body)  
+    (with-unique-names (this-s)
+      (setf (get s-indicator current-s-indicator) this-s)
+      `(let* ((it ,test)
+              (,this-s it))
+         (declare (ignorable ,this-s))
+         (,op it ,@body)))))

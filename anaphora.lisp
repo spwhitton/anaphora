@@ -5,13 +5,6 @@
 
 (in-package :anaphora)
 
-(defmacro anaphoric (op test &body body)  
-  ;; Note: multiple values discarded. Handling them would be nice, but also
-  ;; requires consing up a values-list, which seems a bit harsh for something
-  ;; that is supposed to be "simple syntactic sugar".
-  `(let ((it ,test))
-     (,op it ,@body)))
-
 ;;; This was the original implementation of SYMBOLIC -- and still good
 ;;; for getting the basic idea. Brian Masterbrooks solution to
 ;;; infinite recusion during macroexpansion, that nested forms of this

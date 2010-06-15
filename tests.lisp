@@ -392,3 +392,23 @@
         (unless (eql it :yes) (error "Broken."))
       :no)
   :yes)
+
+(deftest aif.sif.1
+    (sif 1 (aif it it))
+  1)
+
+(deftest aif.sif.2
+    (aif 1 (sif it it))
+  1)
+
+(deftest aif.sif.3
+    (aif (list 1 2 3)
+        (sif (car it)
+             (setf it 'a)
+             :foo))
+  a)
+
+(deftest alet.slet.1
+    (slet 42 (alet 43 (slet it it)))
+  43)
+
