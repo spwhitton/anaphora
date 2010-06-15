@@ -7,6 +7,8 @@
   (:use :cl)
   (:export
    #:it
+   #:alet
+   #:slet
    #:aif
    #:aand
    #:sor
@@ -39,6 +41,7 @@ ANAPHORA-SYMBOL."))
   (:use :cl :anaphora)
   (:export
    #:it
+   #:alet
    #:aif
    #:aand
    #:awhen
@@ -58,6 +61,7 @@ primary values to IT."))
   (:use :cl :anaphora)
   (:export
    #:it
+   #:slet
    #:sor
    #:sif
    #:asif

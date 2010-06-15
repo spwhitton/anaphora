@@ -21,6 +21,15 @@
 ;;;   `(symbol-macrolet ((it ,test))
 ;;;        (,op it ,@body)))
 
+(defmacro alet (form &body body)
+  "Binds the FORM to IT (via LET) in the scope of the BODY."
+  `(anaphoric ignore-first ,form (progn ,@body)))
+
+(defmacro slet (form &body body)
+  "Binds the FORM to IT (via SYMBOL-MACROLET) in the scope of the BODY. IT can
+be set with SETF."
+  `(symbolic ignore-first ,form (progn ,@body)))
+
 (defmacro aand (first &rest rest)
   "Like AND, except binds the first argument to IT (via LET) for the
 scope of the rest of the arguments."
@@ -36,10 +45,9 @@ the scope of the rest of the arguments. IT can be set with SETF."
 the scope of the then and else expressions."  
   `(anaphoric if ,test ,then ,else))
 
-(defmacro sif (test then &optional else &environment env)
+(defmacro sif (test then &optional else)
   "Like IF, except binds the test form to IT (via SYMBOL-MACROLET) for
 the scope of the then and else expressions. IT can be set with SETF"
-  (declare (ignore env))
   `(symbolic if ,test ,then ,else))
 
 (defmacro asif (test then &optional else)

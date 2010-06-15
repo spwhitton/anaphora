@@ -8,6 +8,23 @@
 
 (in-package :anaphora-test)
 
+(deftest alet.1
+    (alet (1+ 1)
+      (1+ it))
+  3)
+
+(deftest alet.2
+    (alet (1+ 1)
+      it
+      (1+ it))
+  3)
+
+(deftest slet.1
+    (let ((x (list 1 2 3)))
+      (slet (car x)
+	(incf it) (values it x)))
+  2 (2 2 3))
+
 (deftest aand.1
     (aand (+ 1 1)
 	  (+ 1 it))
