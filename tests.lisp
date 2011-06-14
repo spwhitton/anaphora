@@ -412,3 +412,26 @@
     (slet 42 (alet 43 (slet it it)))
   43)
 
+
+(defun elt-like (index seq)
+  (elt seq index))
+
+(define-setf-expander elt-like (index seq)
+  (let ((index-var (gensym "index"))
+	(seq-var (gensym "seq"))
+	(store (gensym "store")))
+    (values (list index-var seq-var)
+	    (list index seq)
+	    (list store)
+	    `(if (listp ,seq-var)
+		 (setf (nth ,index-var ,seq-var) ,store)
+		 (setf (aref ,seq-var ,index-var) ,store))
+	    `(if (listp ,seq-var)
+		 (nth ,index-var ,seq-var)
+		 (aref ,seq-var ,index-var)))))
+
+(deftest symbolic.setf-expansion.1
+    (let ((cell (list nil)))
+      (sor (elt-like 0 cell) (setf it 1))
+      (equal cell '(1)))
+  t)

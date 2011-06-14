@@ -25,16 +25,13 @@
   `(symbol-macrolet ,@whatever))
 
 (define-setf-expander internal-symbol-macrolet (binding-forms place &environment env)
-  (multiple-value-bind (dummies vals newval setter getter)
+  (multiple-value-bind (dummies vals newvals setter getter)
       (get-setf-expansion place env)
-    (declare (ignore newval setter))
-    (let ((store (gensym)))
-      (values dummies
-              (substitute `(symbol-macrolet ,binding-forms it) 'it vals)
-              `(,store)
-              `(symbol-macrolet ,binding-forms
-                 (setf ,getter ,store) ,store)
-              `(symbol-macrolet ,binding-forms ,getter)))))
+    (values dummies
+	    (substitute `(symbol-macrolet ,binding-forms it) 'it vals)
+	    newvals
+	    `(symbol-macrolet ,binding-forms ,setter)
+	    `(symbol-macrolet ,binding-forms ,getter))))
 
 (with-unique-names (s-indicator current-s-indicator)
   (defmacro symbolic (operation test &rest other-args)
