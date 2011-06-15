@@ -47,7 +47,7 @@ the scope of the then and else expressions. IT can be set with SETF"
   "Like IF, except binds the result of the test to IT (via LET) for
 the the scope of the then-expression, and the test form to IT (via
 SYMBOL-MACROLET) for the scope of the else-expression. Within scope of
-the else-expression IT can be set with SETF."
+the else-expression, IT can be set with SETF."
     `(let ((it ,test))
        (if it
 	   ,then
@@ -149,7 +149,7 @@ scope of the corresponding clause."
 
 (defmacro scond (&body clauses)
   "Like COND, except each test-form is bound to IT (via SYMBOL-MACROLET) for the
-scope of the corresponsing clause. IT can be seet with SETF."
+scope of the corresponsing clause. IT can be set with SETF."
   (labels ((rec (clauses)
 	     (if clauses
 		 (destructuring-bind ((test &body body) . rest) clauses
