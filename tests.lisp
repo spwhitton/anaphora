@@ -385,7 +385,7 @@
 		     (setf it (truename "/tmp/"))
 		     (namestring *default-pathname-defaults*))
 		(setf it tmp)))))
-  "/tmp/")
+  #.(namestring (truename "/tmp/")))
 
 (deftest aprog.1
     (aprog1 :yes
