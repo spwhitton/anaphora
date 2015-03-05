@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+      <title>Anaphora Homepage</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Anaphora</h1>
+    </div>
+    <div class="body">
+
+      <p>Anaphora is the anaphoric macro collection from Hell:
+	it includes many new fiends in addition to old friends
+	like <code>AIF</code> and <code>AWHEN</code>.
+	Anaphora is in the Public Domain.</p>
+
+      <p>Documentation is <a href="anaphora.html">here</a>. Both <a
+	  href="http://common-lisp.net/faq.shtml#checkout">anonymous
+	  CVS</a> and <a
+	  href="http://common-lisp.net/cgi-bin/viewcvs.cgi/?cvsroot=anaphora">ViewCVS</a>
+	are available.</p>
+
+      <h2>News</h2>
+
+      <div>2011-06-15: <a href="files/anaphora-0.9.4.tar.gz">0.9.4</a>
+	released.  Rather than waiting for the exact date of the fifth
+	anniversary of 0.9.3, it seems time to release the minor fixes
+	that have accumulated over the years, due to Gary King, Martin
+	Simmons, and Olof-Joachim Frahm.  Also, <code>ALET</code>
+	and <code>SLET</code> have been added, thanks to Olof-Joachim Frahm.
+      </div>
+
+      <div>2006-06-30: <a href="files/anaphora-0.9.3.tar.gz">0.9.3</a>
+	released. Fixes a long-standing <code>ACOND</code> bug,
+	incorporates <code>APROG1</code> (thanks to Gary King), and adds
+	more documentation strings. For users of the CVS version there
+	is little new here.</div>
+
+      <h2>Installation</h2>
+      <div class="level">
+	<p>If you have <a href="http://www.quicklisp.org/">quicklisp</a>, simply:
+	</p>
+	<pre>CL-USER(1): (ql:quickload "anaphora")</pre>
+
+	<p>Anaphora can manually be downloaded from here:
+	  <code><a href="http://common-lisp.net/project/anaphora/files/anaphora-latest.tar.gz">
+	      anaphora-latest.tar.gz</a>
+	  </code>.</p>
+
+	<p><a href="files/">Browse</a> releases.</p>
+
+      </div>
+
+      <h2>Contact</h2>
+      <div class="level">
+	<p>Questions, feature requests, and bug-reports are welcome on
+	  <code><a href="http://common-lisp.net/mailman/listinfo/anaphora-devel">
+	      anaphora-devel</a></code>.</p>
+      </div>
+
+      <hr></hr>
+
+      <div class="level">
+	<a href="http://validator.w3.org/check/referer" class="separate">
+	  <img src="http://www.w3.org/Icons/valid-xhtml11"
+	    alt="Valid XHTML 1.1!" height="31" width="88"/></a>
+
+	<a href="http://jigsaw.w3.org/css-validator/" class="separate">
+	  <img src="http://jigsaw.w3.org/css-validator/images/vcss"
+	    alt="Valid CSS!" height="31" width="88"/></a>
+      </div>
+
+    </div>
+  </body>
+</html>

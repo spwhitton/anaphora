@@ -1,0 +1,59 @@
+body { 
+	font-family: sans-serif; 
+	background-color: white;
+	color: black;
+	margin: 0;
+	padding: 0;
+}
+
+.header * {
+	color: #ffaa00;
+	background-color: black;
+	margin: 0;
+	padding: 0.5em;
+}
+
+h1 {
+	text-align: left;
+}
+
+.info {
+	text-align: right;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+.body  {
+	margin: 2em 1em;
+}
+
+.level  {
+	margin: 1em;
+}
+
+p {
+	margin: 1em 0em;
+	padding: 0em;
+}
+
+a {
+	color: maroon;
+}
+
+ul {
+	margin: 1em;
+	padding: 0em;
+}
+
+pre {
+	margin: 0em;
+	padding: 1em;
+	border: 1px solid;
+	background-color: #eeeeee;
+	vertical-align: baseline;
+}
+
+img {
+	border: 0;
+}
+

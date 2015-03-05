@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+      <title>Anaphora Documentation</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Anaphora Documentation</h1>
+    </div>
+    <div class="body">
+
+      <p>Anaphoric macros provide implicit bindings for various
+	operations. Extensive use of anaphoric macros is not good
+	style, and probably makes you go blind as well — there's a
+	reason why Anaphora claims to be from Hell.
+      </p>
+
+      <p>Anaphora provides two families of anphoric macros, which can
+	be identified by their names and packages (both families are
+	also exported from the package <code>ANAPHORA</code>). The
+	implicitly-bound symbol <code>ANAPHORA:IT</code> is also
+	exported from all three packages.</p>
+
+      <h2>Basic anaphora</h2>
+
+      <h4>Exported from package <code>ANAPHORA-BASIC</code></h4>
+
+      <p>These bind their first argument to <code>IT</code>
+      via <code>LET</code>. In case of <code>COND</code> all clauses
+      have their test-values bound to <code>IT</code>.
+      Variants: <code>AAND</code>, <code>ALET</code>, <code>APROG1</code>, <code>AIF</code>, <code>ACOND</code>, <code>AWHEN</code>, <code>ACASE</code>, <code>ACCASE</code>, <code>AECASE</code>, <code>ATYPECASE</code>, <code>ACTYPECASE</code>,
+      and <code>AETYPECASE</code>.</p>
+
+      <h2>Symbol-macro anaphora</h2>
+
+      <h4>Exported from package <code>ANAPHORA-SYMBOL</code></h4>
+
+      <p>These bind their first argument (unevaluated)
+      to <code>IT</code> via SYMBOL-<code>MACROLET.</code>
+      Variants: <code>SOR</code>, <code>SLET</code>, <code>SIF</code>, <code>SCOND</code>, <code>SUNLESS</code>, <code>SWHEN</code>, <code>SCASE</code>, <code>SCCASE</code>, <code>SECASE</code>, <code>STYPECASE</code>, <code>SCTYPECASE</code>, <code>SETYPECASE</code>.
+      Also: <code>ASIF</code>, which binds via <code>LET</code> for
+      the then-clause, and <code>SYMBOL-MACROLET</code> for the
+      else-clause.</p>
+
+      </div>
+
+      <hr />
+
+      <div class="level">
+	<a href="http://validator.w3.org/check/referer" class="separate">
+	  <img src="http://www.w3.org/Icons/valid-xhtml11"
+	    alt="Valid XHTML 1.1!" height="31" width="88"/></a>
+
+	<a href="http://jigsaw.w3.org/css-validator/" class="separate">
+	  <img src="http://jigsaw.w3.org/css-validator/images/vcss"
+	    alt="Valid CSS!" height="31" width="88"/></a>
+      </div>
+
+  </body>
+</html>
