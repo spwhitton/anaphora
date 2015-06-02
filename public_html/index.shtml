@@ -16,11 +16,10 @@
 	like <code>AIF</code> and <code>AWHEN</code>.
 	Anaphora is in the Public Domain.</p>
 
-      <p>Documentation is <a href="anaphora.html">here</a>. Both <a
-	  href="http://common-lisp.net/faq.shtml#checkout">anonymous
-	  CVS</a> and <a
-	  href="http://common-lisp.net/cgi-bin/viewcvs.cgi/?cvsroot=anaphora">ViewCVS</a>
-	are available.</p>
+      <p>Documentation is <a href="anaphora.html">here</a>.  The
+        latest source may be
+        obtained <a href="https://github.com/tokenrove/anaphora">from
+        github</a>.</p>
 
       <h2>News</h2>
 
@@ -56,7 +55,7 @@
       <h2>Contact</h2>
       <div class="level">
 	<p>Questions, feature requests, and bug-reports are welcome on
-	  <code><a href="http://common-lisp.net/mailman/listinfo/anaphora-devel">
+          <code><a href="https://mailman.common-lisp.net/listinfo/anaphora-devel">
 	      anaphora-devel</a></code>.</p>
       </div>
 
