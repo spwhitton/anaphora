@@ -377,16 +377,6 @@
     (scond ((= 1 2) :no!))
   nil)
 
-(deftest scond.3
-    (scond ((symbol-value '*default-pathname-defaults*)
-	    (let ((tmp it))
-	      (unwind-protect
-		   (progn
-		     (setf it (truename "/tmp/"))
-		     (namestring *default-pathname-defaults*))
-		(setf it tmp)))))
-  #.(namestring (truename "/tmp/")))
-
 (deftest aprog.1
     (aprog1 :yes
         (unless (eql it :yes) (error "Broken."))
