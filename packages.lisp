@@ -6,10 +6,12 @@
 (defpackage :anaphora
   (:use :cl)
   (:export
+   #:self
    #:it
    #:alet
    #:slet
    #:aif
+   #:alambda
    #:aand
    #:sor
    #:awhen
@@ -23,6 +25,7 @@
    #:acond
    #:sif
    #:asif
+   #:ssetf
    #:swhen
    #:sunless
    #:scase
@@ -40,6 +43,7 @@ ANAPHORA-SYMBOL."))
 (defpackage :anaphora-basic
   (:use :cl :anaphora)
   (:export
+   #:self
    #:it
    #:alet
    #:aif
@@ -60,6 +64,7 @@ primary values to IT."))
 (defpackage :anaphora-symbol
   (:use :cl :anaphora)
   (:export
+   #:self
    #:it
    #:slet
    #:sor
