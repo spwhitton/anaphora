@@ -1,3 +1,7 @@
+# This branch
+
+I've added two macros: Dug Hoyte's alambda, and my ssetf.
+
 # Anaphora
 
 Anaphora is the anaphoric macro collection from Hell: it includes many
