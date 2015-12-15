@@ -1,6 +1,14 @@
 # This branch
 
-I've added two macros: Dug Hoyte's alambda, and my ssetf.
+I've added two macros: Dug Hoyte's `alambda' and my `ssetf'.
+
+`alambda' creates a lambda implicitly named `self'.
+
+`ssetf' names the place being set `it' via a `symbol-macrolet', ie
+
+(defvar *x* (list 1 2 3))
+(ssetf (cadr x) (1+ it))
+;; => *x* is now (list 1 3 3)
 
 # Anaphora
 
