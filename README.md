@@ -1,8 +1,17 @@
 # This branch
 
-I've added two macros: Dug Hoyte's `alambda` and my `ssetf`.
+I've added two macros: Paul Graham's `alambda` and my `ssetf`.
 
 `alambda` creates a lambda implicitly named `self`.
+
+    (defun map-leaves (f tree)
+      (funcall (alambda (x)
+                 (if (atom x) (funcall f x)
+                     (mapcar #'self x)))
+               tree))   
+
+    (map-leaves #'1+ '(0 1 (2 (0 3))))
+    ;;; => '(1 2 (3 (1 4)))
 
 `ssetf` names the place being set `it` via a `symbol-macrolet`, ie
 

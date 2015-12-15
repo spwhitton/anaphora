@@ -159,17 +159,15 @@ scope of the corresponsing clause. IT can be set with SETF."
                  nil)))
     (rec clauses)))
 
-(defmacro alambda (arglist &body body)
-  (alexandria:with-unique-names (wrapper-args)
-    `(lambda (&rest ,wrapper-args)
-       (labels ((self (,@arglist) ,@body))
-         (funcall self ,wrapper-args)))))
+(defmacro alambda (parms &body body)
+  "From Paul Graham's _On Lisp_. Like LAMBDA, but #'SELF is bound to the (not so) anonymous function when body is expanded."
+  `(labels ((self ,parms ,@body))
+     #'self))
 
 (defmacro ssetf (&rest bindings)
-  "Anaphoric setf that binds it to a symbol-macro evaluating to name."
+  "Anaphoric SETF that binds IT to a SYMBOL-MACRO evaluating to the place being SETFed."
   `(progn
      ,@(loop for (name val &rest _) on bindings by #'cddr
              collect
              `(symbol-macrolet ((it ,name))
                 (setf it ,val)))))
-

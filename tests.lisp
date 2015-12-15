@@ -402,6 +402,17 @@
     (slet 42 (alet 43 (slet it it)))
   43)
 
+(deftest alambda.1
+    (car (funcall (alambda (x)
+                    (if (atom x) (1+ x)
+                        (mapcar #'self x)))
+                  '(0 1 (2 (0 3)))))
+  #.(car '(1 2 (3 (1 4)))))
+
+(deftest ssetf.1
+    (let ((x 3))
+      (ssetf x (1+ it)))
+  4)
 
 (defun elt-like (index seq)
   (elt seq index))
