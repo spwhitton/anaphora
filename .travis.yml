@@ -29,6 +29,6 @@ install:
     fi
 
 script:
-  - cl -e '(ql:quickload :anaphora-test)
-           (unless (asdf:oos :test-op :anaphora-test)
+  - cl -e '(ql:quickload :anaphora/test)
+           (unless (asdf:oos :test-op :anaphora/test)
              (uiop:quit 1))'
