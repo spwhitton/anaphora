@@ -151,10 +151,23 @@ scope of the corresponding clause."
   "Like COND, except each test-form is bound to IT (via SYMBOL-MACROLET) for the
 scope of the corresponsing clause. IT can be set with SETF."
   (labels ((rec (clauses)
-	     (if clauses
-		 (destructuring-bind ((test &body body) . rest) clauses
-		   (if body
-		       `(symbolic if ,test (progn ,@body) ,(rec rest))
-		       `(symbolic if ,test it ,(rec rest))))
-		 nil)))
+             (if clauses
+                 (destructuring-bind ((test &body body) . rest) clauses
+                   (if body
+                       `(symbolic if ,test (progn ,@body) ,(rec rest))
+                       `(symbolic if ,test it ,(rec rest))))
+                 nil)))
     (rec clauses)))
+
+(defmacro alambda (parms &body body)
+  "From Paul Graham's _On Lisp_. Like LAMBDA, but #'SELF is bound to the (not so) anonymous function when body is expanded."
+  `(labels ((self ,parms ,@body))
+     #'self))
+
+(defmacro ssetf (&rest bindings)
+  "Anaphoric SETF that binds IT to a SYMBOL-MACRO evaluating to the place being SETFed."
+  `(progn
+     ,@(loop for (name val &rest _) on bindings by #'cddr
+             collect
+             `(symbol-macrolet ((it ,name))
+                (setf it ,val)))))
