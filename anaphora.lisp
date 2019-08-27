@@ -1,3 +1,5 @@
+;;;; -*- Mode: Lisp; Base: 10; Syntax: ANSI-Common-Lisp; Package: ANAPHORA -*-
+
 ;;;; Anaphora: The Anaphoric Macro Package from Hell
 ;;;;
 ;;;; This been placed in Public Domain by the author, 
