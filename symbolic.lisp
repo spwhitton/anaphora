@@ -1,3 +1,5 @@
+;;;; -*- Mode: Lisp; Base: 10; Syntax: ANSI-Common-Lisp; Package: ANAPHORA -*-
+
 ;;;; Copyright (c) 2003 Brian Mastenbrook
 
 ;;;; Permission is hereby granted, free of charge, to any person obtaining
