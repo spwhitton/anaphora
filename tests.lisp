@@ -377,6 +377,11 @@
     (scond ((= 1 2) :no!))
   nil)
 
+(deftest scond.3
+    (equal (scond ((list 'a 'b)))
+           '(a b))
+  t)
+
 (deftest aprog.1
     (aprog1 :yes
         (unless (eql it :yes) (error "Broken."))
