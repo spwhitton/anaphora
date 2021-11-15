@@ -407,6 +407,14 @@
     (slet 42 (alet 43 (slet it it)))
   43)
 
+(deftest alambda.1
+    (funcall (alambda (x)
+	       (if (zerop x)
+		   x
+		   (self (1- x))))
+	     4)
+  0)
+
 
 (defun elt-like (index seq)
   (elt seq index))

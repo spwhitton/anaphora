@@ -160,3 +160,9 @@ scope of the corresponsing clause. IT can be set with SETF."
 		       `(symbolic if ,test it ,(rec rest))))
 		 nil)))
     (rec clauses)))
+
+(defmacro alambda (lambda-list &body body)
+  "Like LAMBDA, except that SELF is bound to the resulting function (via LABELS)
+within BODY."
+  `(labels ((self ,lambda-list ,@body))
+     #'self))

@@ -9,6 +9,7 @@
   (:use :cl)
   (:export
    #:it
+   #:self
    #:alet
    #:slet
    #:aif
@@ -23,6 +24,7 @@
    #:aetypecase
    #:actypecase
    #:acond
+   #:alambda
    #:sif
    #:asif
    #:swhen
@@ -43,6 +45,7 @@ ANAPHORA-SYMBOL."))
   (:use :cl :anaphora)
   (:export
    #:it
+   #:self
    #:alet
    #:aif
    #:aand
@@ -54,10 +57,11 @@ ANAPHORA-SYMBOL."))
    #:atypecase
    #:aetypecase
    #:actypecase
-   #:acond)
+   #:acond
+   #:alambda)
   (:documentation 
    "ANAPHORA-BASIC provides all normal anaphoric constructs, which bind
-primary values to IT."))
+primary values to IT/SELF."))
    
 (defpackage :anaphora-symbol
   (:use :cl :anaphora)
