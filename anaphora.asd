@@ -20,6 +20,7 @@
 (defsystem :anaphora/test
     :description "Tests for anaphora"
     :author "Nikodemus Siivola <nikodemus@random-state.net>"
+    :maintainer "Sean Whitton <spwhitton@spwhitton.name>"
     :license "Public Domain"
     :depends-on (:anaphora :rt)
     :components ((:file "tests")))
