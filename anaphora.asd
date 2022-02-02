@@ -6,7 +6,7 @@
 ;;;; Nikodemus Siivola <nikodemus@random-state.net>
 
 (defsystem :anaphora
-    :version "0.9.7"
+    :version "0.9.8"
     :description "The Anaphoric Macro Package from Hell"
     :author "Nikodemus Siivola <nikodemus@random-state.net>"
     :maintainer "Sean Whitton <spwhitton@spwhitton.name>"
